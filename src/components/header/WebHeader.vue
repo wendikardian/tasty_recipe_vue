@@ -10,13 +10,8 @@
 </template>
 
 
-<script>
+<script setup>
 import NavigationBar from './NavigationBar.vue';
 
-export default {
-    components : {
-        'navigation-bar' : NavigationBar
-    }
-}
 
 </script>

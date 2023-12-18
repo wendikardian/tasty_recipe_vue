@@ -9,16 +9,11 @@
 </template>
 
 
-<script>
+<script setup>
 import SearchMenu from './SearchMenu.vue';
 import SignupMenu from './SignupMenu.vue';
 
-export default {
-    components : {
-        'search-menu' : SearchMenu,
-        'signup-menu' : SignupMenu
-    }
-}
+
 
 
 </script>

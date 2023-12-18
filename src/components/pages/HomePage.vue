@@ -7,18 +7,19 @@
                 based on the food you love and the friends you follow.
             </p>
         </div>
-        <recipe-list></recipe-list>
+        <recipe-list
+        :recipes="recipeList"
+        ></recipe-list>
 
     </div>
 </template>
 
-<script>
+<script setup>
 import RecipeList from '../recipe/RecipeList.vue';
+import RECIPE_DATA from '../../recipe.js'
 
-export default {
-    components : {
-        'recipe-list' : RecipeList
-    }
-}
+const recipeList = RECIPE_DATA
+
+
 
 </script>

@@ -8,17 +8,13 @@
   </div>
 </template>
 
-<script>
+<script setup>
 
 import HomePage from './components/pages/HomePage.vue';
 import WebFooter from './components/footer/WebFooter.vue';
 import WebHeader from './components/header/WebHeader.vue';
 
-export default {
-  components: {
-    HomePage, WebFooter, WebHeader
-  },
-}
+
 
 </script>
 
