@@ -1,21 +1,26 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
+
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <web-header></web-header>
+    <home-page></home-page>
+    <web-footer></web-footer>
+  </div>
 </template>
+
+<script>
+
+import HomePage from './components/pages/HomePage.vue';
+import WebFooter from './components/footer/WebFooter.vue';
+import WebHeader from './components/header/WebHeader.vue';
+
+export default {
+  components: {
+    HomePage, WebFooter, WebHeader
+  },
+}
+
+</script>
 
 <style scoped>
 header {

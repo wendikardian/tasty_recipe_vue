@@ -1,35 +1,254 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+body {
+  font-family: "Inter", sans-serif;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+:root {
+  --base-color: #4c4ddc;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+.btn.btn-category {
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: #404040;
+  --bs-btn-bg: var(--bs-white);
+  --bs-btn-border-color: #c2c2c2;
+  --bs-btn-border-radius: 1.5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--base-color);
+  --bs-btn-hover-border-color: var(--base-color);
+  --bs-btn-focus-shadow-rgb: var(--base-color);
+  --bs-btn-active-color: var(--bs-white);
+  --bs-btn-active-bg: var(--base-color);
+  --bs-btn-active-border-color: var(--base-color);
+}
+
+.btn.btn-signup {
+  width: 110px;
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--base-color);
+  --bs-btn-border-color: var(--base-color);
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--base-color);
+  --bs-btn-hover-border-color: var(--base-color);
+  --bs-btn-focus-shadow-rgb: var(--base-color);
+  --bs-btn-active-color: var(--bs-white);
+  --bs-btn-active-bg: var(--base-color);
+  --bs-btn-active-border-color: var(--base-color);
+}
+
+.btn.fav-btn {
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: var(--base-color);
+  --bs-btn-bg: var(--bs-white);
+  --bs-btn-border-color: var(--base-color);
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--base-color);
+  --bs-btn-hover-bg: var(--bs-white);
+  --bs-btn-hover-border-color: var(--base-color);
+  --bs-btn-focus-shadow-rgb: var(--base-color);
+  --bs-btn-active-color: var(--bs-white);
+  --bs-btn-active-bg: var(--base-color);
+  --bs-btn-active-border-color: var(--base-color);
+}
+
+.btn.fav-btn-2 {
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--base-color);
+  --bs-btn-border-color: var(--base-color);
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--base-color);
+  --bs-btn-hover-border-color: var(--base-color);
+  --bs-btn-focus-shadow-rgb: var(--base-color);
+  --bs-btn-active-color: var(--bs-white);
+  --bs-btn-active-bg: var(--base-color);
+  --bs-btn-active-border-color: var(--base-color);
+}
+
+.btn.edit-btn {
+  width: 170px;
+  height: 40px;
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: var(--base-color);
+  --bs-btn-bg: var(--bs-white);
+  --bs-btn-border-color: var(--base-color);
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--base-color);
+  --bs-btn-hover-border-color: var(--base-color);
+  --bs-btn-focus-shadow-rgb: var(--base-color);
+  --bs-btn-active-color: var(--bs-white);
+  --bs-btn-active-bg: var(--base-color);
+  --bs-btn-active-border-color: var(--base-color);
+}
+
+.btn.delete-btn {
+  width: 170px;
+  height: 40px;
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: #cb3a31;
+  --bs-btn-bg: var(--bs-white);
+  --bs-btn-border-color: #cb3a31;
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: #cb3a31;
+  --bs-btn-hover-border-color: #cb3a31;
+  --bs-btn-focus-shadow-rgb: var(--base-color);
+  --bs-btn-active-color: var(--bs-white);
+  --bs-btn-active-bg: var(--base-color);
+  --bs-btn-active-border-color: var(--base-color);
+}
+
+.btn.add-btn {
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--base-color);
+  --bs-btn-border-color: var(--base-color);
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--base-color);
+  --bs-btn-hover-border-color: var(--base-color);
+  --bs-btn-focus-shadow-rgb: var(--base-color);
+  --bs-btn-active-color: var(--bs-white);
+  --bs-btn-active-bg: var(--base-color);
+  --bs-btn-active-border-color: var(--base-color);
+}
+
+.btn.submit-recipe-btn,
+.btn.login {
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--base-color);
+  --bs-btn-border-color: var(--base-color);
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--base-color);
+  --bs-btn-hover-border-color: var(--base-color);
+  --bs-btn-focus-shadow-rgb: var(--base-color);
+  --bs-btn-active-color: var(--bs-white);
+  --bs-btn-active-bg: var(--base-color);
+  --bs-btn-active-border-color: var(--base-color);
+}
+
+.btn.cancel-btn {
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: var(--base-color);
+  --bs-btn-bg: var(--base-white);
+  --bs-btn-border-color: var(--base-white);
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--base-color);
+  --bs-btn-hover-bg: var(--base-white);
+  --bs-btn-hover-border-color: var(--base-white);
+  --bs-btn-focus-shadow-rgb: var(--base-white);
+  --bs-btn-active-color: var(--base-color);
+  --bs-btn-active-bg: var(--base-white);
+  --bs-btn-active-border-color: var(--base-white);
+}
+
+.btn.new-ingredient-btn {
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: var(--base-color);
+  --bs-btn-bg: var(--bs-white);
+  --bs-btn-border-color: var(--base-color);
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--base-color);
+  --bs-btn-hover-border-color: var(--base-color);
+  --bs-btn-focus-shadow-rgb: var(--base-color);
+  --bs-btn-active-color: var(--bs-white);
+  --bs-btn-active-bg: var(--base-color);
+  --bs-btn-active-border-color: var(--base-color);
+}
+
+.btn.base-color-border {
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: var(--base-color);
+  --bs-btn-bg: var(--base-white);
+  --bs-btn-border-color: var(--base-color);
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--base-color);
+  --bs-btn-hover-bg: var(--base-white);
+  --bs-btn-hover-border-color: var(--base-white);
+  --bs-btn-focus-shadow-rgb: var(--base-white);
+  --bs-btn-active-color: var(--base-color);
+  --bs-btn-active-bg: var(--base-white);
+  --bs-btn-active-border-color: var(--base-white);
+}
+
+.btn.base-color-bg {
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--base-color);
+  --bs-btn-border-color: var(--base-color);
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--base-color);
+  --bs-btn-hover-border-color: var(--base-color);
+  --bs-btn-focus-shadow-rgb: var(--base-color);
+  --bs-btn-active-color: var(--bs-white);
+  --bs-btn-active-bg: var(--base-color);
+  --bs-btn-active-border-color: var(--base-color);
+}
+
+.btn.new-ingredient-btn:hover {
+  color: white;
+}
+
+.bg-color-detail {
+  background-color: #efefff;
+}
+
+.border-primary {
+  border-color: #4c4ddc !important;
+}
+
+@media only screen and (min-width: 992px) {
+  /* styles for browsers larger than 960px; */
+  .recipe__detail-img {
+    width: 200px;
+    height: 200px;
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
+@media only screen and (min-width: 768px) {
+  /* default iPad screens */
+  
+}
+
+@media only screen and (min-width: 1200px) {
+  /* for sumo sized (mac) screens */
+}
+
+@media only screen and (min-width: 1400px) {
+  /* styles for browsers larger than 1440px; */
+  
+}
+
+@media only screen and (min-width: 576px) {
+  /* styles for mobile browsers smaller than 480px; (iPhone) */
+  .recipe__detail-img {
+    width: 311px;
+    height: 311px;
   }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  .btn.delete-btn {
+    width: 140px;
+  }
+
+  .btn.edit-btn {
+    width: 140px;
+  }
+
+  .login-form, .signup-form {
+    width: 600px;
+  }
+  
+}
+
+@media only screen and (max-width: 576px) {
+  .login-form, .signup-form {
+    width: 100%;
   }
 }
