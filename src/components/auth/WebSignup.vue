@@ -6,7 +6,7 @@
                 <h2 class="mt-4">Create your account</h2>
                 <p>Enter your details to use all the app features.</p>
             </div>
-            <form class="mt-3">
+            <form class="mt-3" @submit.prevent="register">
                 <div class="row">
                     <div class="col">
                         <base-input type="text" identity="firstname" label="First Name" placeholder="Your first name"
@@ -28,7 +28,9 @@
                 </div>
                 <div class="my-4">
                     <base-input type="password" identity="password" label="Password" placeholder="Your password"
-                        v-model="signupData.password" @keyInput="passwordCheck" />
+                        v-model="signupData.password" @keyInput="passwordCheck"
+                        
+                        />
                     <p class="text-danger mt-1 fw-medium" style="font-size: 11px"
                         :style="{ display: passwordStatusDisplay }">
                         The Password field must be at least 8 characters in length.
@@ -47,10 +49,8 @@
                     </p>
                 </div>
                 <div class="my-4">
-                    <base-input type="file" identity="recipeImage" label="Profile Photo" :isImage="true" 
-                    :value="signupData.imageLink"
-                        @change="checkImage"
-                    >
+                    <base-input type="file" identity="recipeImage" label="Profile Photo" :isImage="true"
+                        :value="signupData.imageLink" @change="checkImage">
 
                         <div>
                             <div class="border pi-1 mt-2 rounded-circle">
@@ -81,7 +81,15 @@
 <script setup >
 import BaseInput from '../ui/BaseInput.vue';
 import BaseButton from '../ui/BaseButton.vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 import { reactive, ref } from "vue";
+
+const store = useStore();
+const router = useRouter();
+
+
+
 
 
 const signupData = reactive({
@@ -99,6 +107,7 @@ const signupData = reactive({
 const passwordStatusDisplay = ref("none");
 const passwordCheck = () => {
     if (signupData.password.length < 8) {
+        // alert(signupData.confirmationPassword.length)
         passwordStatusDisplay.value = "block";
     } else {
         passwordStatusDisplay.value = "none";
@@ -106,8 +115,6 @@ const passwordCheck = () => {
 }
 
 const checkImage = (e) => {
-    // alert("check image");
-    // console.log(e)
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -137,6 +144,18 @@ const confirmationPasswordCheck = () => {
     confirmPassowrdDoesNotMatch.value = "none";
     confirmPassowrdDoesMatch.value = "block";
 }
+
+const register = async () => {
+    if(signupData.password !== signupData.confirmationPassword || signupData.password.length < 8) {
+        signupData.confirmationPassword = "";
+        signupData.password = "";
+        confirmPassowrdDoesNotMatch.value = "none";
+        confirmPassowrdDoesMatch.value = "none";
+    }else { 
+        await store.dispatch('auth/getRegisterData', signupData);
+        router.push('/');
+    }
+};
 
 
 

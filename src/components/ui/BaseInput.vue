@@ -4,8 +4,10 @@
         <slot></slot>
     </label>
     <input :class="[{ 'd-none': isImage }, 'form-control']" :type="type" :id="identity" :placeholder="placeholder"
-        :value="modelValue" :readonly="readonly === '1'" @change="$emit('change', $event)"
-        @keyup="$emit('keyInput', $event.target.value)" />
+        :value="modelValue" :readonly="readonly === '1'" @keyup="$emit('keyInput', $event.target.value)"
+        @change="$emit('change', $event)"
+        @input="$emit('update:modelValue', $event.target.value)" />
+
 </template>
 
 <script setup>
