@@ -4,12 +4,15 @@ export default {
     namespaced: true,
     state() {
         return {
-            recipes : []
+            recipes : [],
+            recipeDetail : {}
         }
     }, getters : {},
     mutations : {
         setRecipeData(state, payload) {
             state.recipes = payload;
+        }, setRecipeDetail(state, payload){
+            state.recipeDetail = payload;
         }
     },
     actions : {
@@ -33,6 +36,13 @@ export default {
                 }
                 commit("setRecipeData", arr)
             } catch( err) {
+                console.log(err);
+            }
+        }, async getRecipeDetail({commit}, payload){
+            try { 
+                const {data} = await axios.get(`https://vue-js-project-5e9a5-default-rtdb.firebaseio.com/recipes/${payload}.json`);
+                commit("setRecipeDetail", data);
+            }catch (err){
                 console.log(err);
             }
         }
