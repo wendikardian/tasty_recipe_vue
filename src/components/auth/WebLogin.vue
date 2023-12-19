@@ -6,11 +6,15 @@
                 <h2 class="mt-4">Log in to your account</h2>
                 <p>Welcome back! Please enter your details.</p>
             </div>
-            <form>
+            <form @submit.prevent="login" >
                 <div class="my-4"><base-input type="email" identity="email" label="Email"
-                        placeholder="Your email address" /></div>
+                        placeholder="Your email address"
+                        v-model="loginData.email"
+                        /></div>
                 <div class="my-4"><base-input type="password" identity="password" label="Password"
-                        placeholder="Your password" /></div>
+                        placeholder="Your password"
+                        v-model="loginData.password"
+                        /></div>
 
                         <base-button class="login w-100 my-3">Login </base-button>
             </form>
@@ -30,5 +34,24 @@
 
 import BaseInput from '../ui/BaseInput.vue';
 import BaseButton from '../ui/BaseButton.vue';
+import {reactive} from "vue";
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+
+
+const store = useStore();
+const router = useRouter();
+
+const loginData = reactive({
+    email: '',
+    password: '',
+    isLogin: false
+})
+
+
+const login = async () => {
+    await store.dispatch('auth/getLoginData', loginData);
+    router.push('/');
+}
 
 </script>
