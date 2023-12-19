@@ -3,11 +3,14 @@
         {{ label }} <span style="color: #cb3a31">*</span>
         <slot></slot>
     </label>
-    <input :class="[{ 'd-none' : isImage}, 'form-control']" :type="type" :id="identity" :placeholder="placeholder" :value="modelValue"
-        :readonly="readonly === '1'"  >
+    <input :class="[{ 'd-none': isImage }, 'form-control']" :type="type" :id="identity" :placeholder="placeholder"
+        :value="modelValue" :readonly="readonly === '1'" @change="$emit('change', $event)"
+        @keyup="$emit('keyInput', $event.target.value)" />
 </template>
 
 <script setup>
+
+// define Props is not defined
 
 defineProps({
     type: { type: String, require: true },
@@ -15,7 +18,12 @@ defineProps({
     identity: { type: String, require: true },
     placeholder: { type: String, require: true },
     readonly: { type: String, require: true, default: '0' },
-    isImage : { type: Boolean, require: false, default: false },
+    isImage: { type: Boolean, require: false, default: false },
+    modelValue: { type: [String, Number] }
 })
+// const emit = defineEmits(['update:modelValue', 'keyInput', 'input', 'change'])
+
+// add emits for @input
+
 
 </script>
