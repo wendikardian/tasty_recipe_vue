@@ -5,9 +5,9 @@
                 <p class="fs-4 my-0 fw-semibold">Directions</p>
             </div>
             <div class="card-body">
-                <div>
-                    <p class="my-2 fs-5 fw-semibold">Step ...</p>
-                    <p class="my-2"></p>
+                <div v-for="(direction, index) in recipeDetail.directions" :key="index">
+                    <p class="my-2 fs-5 fw-semibold">Step {{index  + 1}}</p>
+                    <p class="my-2">{{ direction }}</p>
                 </div>
             </div>
         </div>
