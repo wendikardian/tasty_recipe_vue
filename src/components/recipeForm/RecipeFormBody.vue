@@ -36,8 +36,11 @@
                     <!-- Recipe Cateogry Start -->
                     <div class="mb-3">
                         <base-select :data="['Breakfast', 'Lunch', 'Dinner', 'Meals', 'Snacks']" identity="recipeType"
-                            label="Recipe Type">
+                            label="Recipe Type"
                             v-model="recipeData.category"
+                            @change="changeRecipeType"
+                            >
+                            
                         </base-select>
                     </div>
                     <!-- Recipe Category End -->
@@ -164,7 +167,9 @@
                 <!-- Cancel Button End -->
 
                 <!-- Submit Button Start -->
-                <base-button class="submit-recipe-btn px-3 py-2 ms-1" type="button">
+                <base-button class="submit-recipe-btn px-3 py-2 ms-1" type="button"
+                @clickButton="addNewRecipe"
+                >
                     Submit
                 </base-button>
                 <!-- Submit Button End -->
@@ -239,9 +244,11 @@ const checkImage = (event) => {
 }
 
 const addNewRecipe = async () => {
-    alert('cliked')
     await store.dispatch('recipe/addNewRecipe', recipeData);
     router.push('/user/user-recipe');
 }
-
+const changeRecipeType = (event) => {
+    console.log(event.target.value);
+    recipeData.category = event.target.value;
+}
 </script>
