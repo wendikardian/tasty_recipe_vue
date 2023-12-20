@@ -22,7 +22,9 @@ import UserRecipe from '../user/UserRecipe.vue';
 import {useRoute} from 'vue-router';
 import {computed} from 'vue';
 
+
 const route = useRoute();
+
 const component = {
     "personal-info": PersonalInfo,
     "favorite-recipes": FavoriteRecipe,
@@ -33,5 +35,9 @@ const getRoute = computed(() => {
     return route.params.component;
 })
 
+
+const userData = computed(() => {
+    return store.state.auth.userLogin;
+})
 
 </script>

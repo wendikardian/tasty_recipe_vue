@@ -3,10 +3,10 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <div class="d-flex align-items-center">
-                    <img src="" alt="Profile" width="36" height="36" class="rounded-circle" style="object-fit: cover" />
+                    <img :src="userData.imageLink" alt="Profile" width="36" height="36" class="rounded-circle" style="object-fit: cover" />
                     <div class="ps-3">
-                        <p class="my-0 fs-5 fw-semibold">Jack Daniel</p>
-                        <p class="my-0 fs-6 text-secondary">jackdaniel@mail.com</p>
+                        <p class="my-0 fs-5 fw-semibold">{{ userData.firstName }}</p>
+                        <p class="my-0 fs-6 text-secondary">{{ userData.lastName }}</p>
                     </div>
                 </div>
             </li>
@@ -24,6 +24,14 @@
 </template>
   
 <script setup>
+import {computed} from 'vue';
+import { useStore } from 'vuex';
+
+
+const store = useStore();
+const userData = computed(() => {
+    return store.state.auth.userLogin;
+})
 const emit = defineEmits(['changeComponent']);
 
 

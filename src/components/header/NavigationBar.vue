@@ -20,9 +20,7 @@ import { useStore } from 'vuex';
 const menuComponent = ref("signup-menu");
 const store = useStore();
 
-const getToken = computed(() => {
-    return store.state.auth.token;
-})
+
 
 
 const components = {
@@ -30,7 +28,9 @@ const components = {
     'profile-menu': ProfileMenu,
 }
 
-
+const getToken = computed(() => {
+    return store.state.auth.token;
+})
 if(!getToken.value) {
     menuComponent.value = "signup-menu";
 } else {

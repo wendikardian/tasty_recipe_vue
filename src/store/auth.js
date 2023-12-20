@@ -15,20 +15,21 @@ export default {
       state.token = idToken;
       state.tokenExpiration = expiresIn;
       Cookies.set("tokenExpirationDate", expiresIn);
-      Cookies.set("jwt", idToken);
+      Cookies.set("jwt", idToken, { expires: 7 });
     },
     setUserLogin(state, { userData, loginStatus }) {
       state.userLogin = userData;
       state.isLogin = loginStatus;
-    },setUserLogout(state) {
-        state.token = null;
-        state.userLogin = {}
-        state.islogin = false
-        state.tokenExpirationDate = null
-        Cookies.remove('jwt')
-        Cookies.remove('tokenExpirationDate')
-        Cookies.remove('UID')
-    }
+    },
+    setUserLogout(state) {
+      state.token = null;
+      state.userLogin = {};
+      state.islogin = false;
+      state.tokenExpirationDate = null;
+      Cookies.remove("jwt");
+      Cookies.remove("tokenExpirationDate");
+      Cookies.remove("UID");
+    },
   },
   actions: {
     async getRegisterData({ commit, dispatch }, payload) {
@@ -55,7 +56,7 @@ export default {
           email: payload.email,
           imageLink: payload.imageLink,
         };
-        Cookies.set("UID", newUserData.userId);
+        Cookies.set("UID", newUserData.userId, { expires: 7 });
         await dispatch("addNewUser", newUserData);
       } catch (err) {
         console.log(err);
@@ -99,12 +100,16 @@ export default {
         );
         for (let key in data) {
           if (data[key].userId === payload) {
-            Cookies.set("UID", data[key].userId);
+            Cookies.set("UID", data[key].userId, { expires: 7 });
             commit("setUserLogin", { userData: data[key], loginStatus: true });
           }
         }
-        const userData = arr.find((user) => user.userId === payload);
-        commit("setUserLogin", { userData, loginStatus: true });
+        const userData = Object.values(data).find(
+          (user) => user.userId === payload
+        );
+        if (userData) {
+          commit("setUserLogin", { userData, loginStatus: true });
+        }
       } catch (err) {
         console.log(err);
       }
