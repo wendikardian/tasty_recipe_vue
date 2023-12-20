@@ -1,6 +1,6 @@
 <template>
     <li class="list-group-item">
-        <form>
+        <form @submit.prevent="addNewRecipe" >
             <!-- General Information Start -->
             <div>
                 <p class="my-3 fs-5 fw-semibold">General Information</p>
@@ -182,6 +182,11 @@ import BaseSelect from '../ui/BaseSelect.vue';
 import BaseButton from '../ui/BaseButton.vue';
 import {reactive} from 'vue';
 import {ref} from 'vue';
+import {useStore} from 'vuex';
+import {useRouter} from 'vue-router';
+
+const store = useStore();
+const router = useRouter();
 
 const recipeData = reactive({
     imageLink : "",
@@ -231,6 +236,12 @@ const checkImage = (event) => {
     reader.addEventListener("load", () => {
         recipeData.imageLink = reader.result;
     })
+}
+
+const addNewRecipe = async () => {
+    alert('cliked')
+    await store.dispatch('recipe/addNewRecipe', recipeData);
+    router.push('/user/user-recipe');
 }
 
 </script>

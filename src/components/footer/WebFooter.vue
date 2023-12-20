@@ -22,6 +22,11 @@
               class="form-control"
               placeholder="Your email address"
             />
+            <button type="button" class="btn btn-signup rounded-pill mt-4 mx-5"
+            @click="navigateToNewRecipe"
+            >
+              Add + 
+            </button>
             <button type="button" class="btn btn-signup rounded-pill mt-4">
               Sign Up
             </button>
@@ -31,3 +36,16 @@
       </div>
     </footer>
   </template>
+
+
+<script setup>
+
+// import router
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const navigateToNewRecipe = () => {
+    router.push('/new-recipe');
+}
+
+</script>
