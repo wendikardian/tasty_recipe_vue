@@ -1,18 +1,11 @@
 <template>
-
     <div>
         <label :for="identity" class="fw-semibold">
             {{ label }} <span class="text-danger">*</span>
         </label>
-
-        <textarea
-            class="form-control" :id="identity" @keyup="$emit('update:modelValue', $event.target.value)"
-            v-text="modelValue"
-        >
-
-        </textarea>
+        <textarea class="form-control" :id="identity" @keyup="emit('update:modelValue', $event.target.value)"
+            v-text="modelValue"></textarea>
     </div>
-
 </template>
 
 

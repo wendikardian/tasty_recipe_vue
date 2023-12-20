@@ -3,6 +3,7 @@ import LoginPage from "./components/pages/LoginPage.vue";
 import SignupPage from "./components/pages/SignupPage.vue";
 import DetailPage from "./components/pages/DetailPage.vue";
 import UserPage from "./components/pages/UserPage.vue";
+import NewRecipePage from './components/pages/NewRecipePage.vue';
 import Cookies from "js-cookie";
 import {store} from "./store/index.js";
 
@@ -57,6 +58,11 @@ export const routes = [
     path : '/user/:component',
     name: 'userPage',
     component : UserPage,
+    beforeEnter : (to, from, next) => {
+      checkAuth() ? next() : next({name : "login"});
+    }
+  }, {
+    path: '/new-recipe', name : "newRecipePage", component : NewRecipePage,
     beforeEnter : (to, from, next) => {
       checkAuth() ? next() : next({name : "login"});
     }
