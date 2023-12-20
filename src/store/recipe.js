@@ -74,6 +74,15 @@ export default {
       } catch (err) { 
         console.log(err);
       }
+    }, async deleteRecipe({dispatch, rootState}, payload){
+      try {
+        const {data} = await axios.delete(
+          `https://vue-js-project-5e9a5-default-rtdb.firebaseio.com/recipes/${payload}.json?auth=${rootState.auth.token}`
+        );
+        await dispatch('getRecipeData');
+      }catch(err){
+        console.log(err);
+      }
     }
   },
 };
