@@ -6,7 +6,9 @@
     <input :class="[{ 'd-none': isImage }, 'form-control']" :type="type" :id="identity" :placeholder="placeholder"
         :value="modelValue" :readonly="readonly === '1'" @keyup="$emit('keyInput', $event.target.value)"
         @change="$emit('change', $event)"
-        @input="$emit('update:modelValue', $event.target.value)" />
+        @input="$emit('update:modelValue', $event.target.value)" 
+        @focus="$emit('totalTimeFocus', $event.target.value)"
+        />
 
 </template>
 

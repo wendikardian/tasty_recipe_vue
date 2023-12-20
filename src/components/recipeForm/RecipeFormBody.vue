@@ -70,6 +70,7 @@
                     <div class="mb-3">
                         <base-input type="number" identity="totalTime" placeholder="0" label="Total Time"
                         v-model="recipeData.totalTime"
+                        @totalTimeFocus="totalTime" readonly="1"
                         ></base-input>
                     </div>
                     <!-- Total Time End -->
@@ -97,7 +98,9 @@
 
                         </div>
                         <!-- Ingredient Input End -->
-                        <div class="col-lg-1 col-1 col-form-label align-self-end delete-ingredient" style="color: #cb3a31">
+                        <div class="col-lg-1 col-1 col-form-label align-self-end delete-ingredient" style="color: #cb3a31"
+                        v-if="ingredientCount > 1" @click="deleteIngredient(count-1)"
+                        >
                             <i class="fa-regular fa-trash-can px-1"></i><span class="d-none d-md-inline">Delete</span>
                         </div>
                     </div>
@@ -135,7 +138,9 @@
 
                         </div>
                         <!-- Direction Input End -->
-                        <div class="col-lg-1 col-1 col-form-label align-self-end delete-ingredient" style="color: #cb3a31">
+                        <div class="col-lg-1 col-1 col-form-label align-self-end delete-ingredient" style="color: #cb3a31"
+                        v-if="directionCount > 1" @click="deleteDirection(count-1)"
+                        >
                             <i class="fa-regular fa-trash-can px-1"></i><span class="d-none d-md-inline">Delete</span>
                         </div>
                     </div>
@@ -200,6 +205,32 @@ const addIngredient = () => {
 
 const addDirection = () => {
     directionCount.value++;
+}
+
+const deleteIngredient = (index) => {
+    recipeData.ingredients.splice(index, 1);
+    ingredientCount.value--;
+}
+
+
+const deleteDirection = (index) => {
+    recipeData.directions.splice(index, 1);
+    directionCount.value--;
+}
+
+
+const totalTime = () => {
+    recipeData.totalTime = parseInt(recipeData.prepTime) + parseInt(recipeData.cookTime);
+}
+
+
+const checkImage = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.addEventListener("load", () => {
+        recipeData.imageLink = reader.result;
+    })
 }
 
 </script>
