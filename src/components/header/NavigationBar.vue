@@ -28,10 +28,12 @@ const components = {
     'profile-menu': ProfileMenu,
 }
 
+
 const getToken = computed(() => {
     return store.state.auth.token;
 })
 if(!getToken.value) {
+    console.log(getToken.value)
     menuComponent.value = "signup-menu";
 } else {
     menuComponent.value = "profile-menu";

@@ -4,7 +4,7 @@ export default {
   namespaced: true,
   state() {
     return {
-      token: null,
+      token: Cookies.get("jwt") || null,
       tokenExpiration: null,
       userLogin: {},
       isLogin: false,
@@ -98,17 +98,11 @@ export default {
         const { data } = await axios.get(
           `https://vue-js-project-5e9a5-default-rtdb.firebaseio.com/users.json?auth=${state.token}`
         );
-        for (let key in data) {
-          if (data[key].userId === payload) {
-            Cookies.set("UID", data[key].userId, { expires: 7 });
+        for (let key in data){
+          if(data[key].userId === payload){
+            Cookies.set("UID", data[key].userId);
             commit("setUserLogin", { userData: data[key], loginStatus: true });
           }
-        }
-        const userData = Object.values(data).find(
-          (user) => user.userId === payload
-        );
-        if (userData) {
-          commit("setUserLogin", { userData, loginStatus: true });
         }
       } catch (err) {
         console.log(err);
