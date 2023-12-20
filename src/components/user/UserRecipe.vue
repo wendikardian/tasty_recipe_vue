@@ -39,6 +39,12 @@ import UserRecipeCard from './UserRecipeCard.vue';
 import {computed } from 'vue';
 import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';
+import {onMounted} from 'vue';
+
+onMounted(async () => {
+  await store.dispatch('recipe/getRecipeData');
+})
+
 const store = useStore();
 
 const recipes= computed(() => {

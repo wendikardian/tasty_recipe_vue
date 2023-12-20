@@ -83,6 +83,16 @@ export default {
       }catch(err){
         console.log(err);
       }
+    }, async updateRecipe({dispatch, rootState}, {id, newRecipe}){
+      try { 
+        const {data} = await axios.put(
+          `https://vue-js-project-5e9a5-default-rtdb.firebaseio.com/recipes/${id}.json?auth=${rootState.auth.token}`,
+          newRecipe
+        );
+          await dispatch("getRecipeData")
+      }catch (err) { 
+        console.log(err);
+      }
     }
   },
 };

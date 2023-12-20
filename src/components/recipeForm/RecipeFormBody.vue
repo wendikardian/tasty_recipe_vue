@@ -1,6 +1,6 @@
 <template>
     <li class="list-group-item">
-        <form @submit.prevent="addNewRecipe" >
+        <form @submit.prevent="addNewRecipe">
             <!-- General Information Start -->
             <div>
                 <p class="my-3 fs-5 fw-semibold">General Information</p>
@@ -8,18 +8,19 @@
                     <!-- Image Start -->
                     <div class="mb-3">
                         <base-input label="Photo Recipe" type="file" identity="recipeImage"
-                        @change="checkImage"
-                        ></base-input>
+                            @change="checkImage"></base-input>
+                        <div>
+                            <img :src="recipeData.imageLink" :alt="recipeData.name" class="image"
+                                style="object-fit: cover; width: 100px; height: 100px;">
 
+                        </div>
                     </div>
                     <!-- Image End -->
 
                     <!-- Recipe Title Start -->
                     <div class="mb-3">
                         <base-input type="text" identity="recipeTitle" placeholder="Give your recipe a title"
-                            label="Recipe Title"
-                            v-model="recipeData.name"
-                            ></base-input>
+                            label="Recipe Title" v-model="recipeData.name"></base-input>
                     </div>
                     <!-- Recipe Title  End -->
 
@@ -27,8 +28,7 @@
                     <div class="mb-3">
                         <base-text-area identity="recipeDescription" label="Description"
                             placeholder="Share story behind recipe and what makes it special"
-                            v-model="recipeData.description"
-                            ></base-text-area>
+                            v-model="recipeData.description"></base-text-area>
 
                     </div>
                     <!-- Recipe Description End -->
@@ -36,11 +36,8 @@
                     <!-- Recipe Cateogry Start -->
                     <div class="mb-3">
                         <base-select :data="['Breakfast', 'Lunch', 'Dinner', 'Meals', 'Snacks']" identity="recipeType"
-                            label="Recipe Type"
-                            v-model="recipeData.category"
-                            @change="changeRecipeType"
-                            >
-                            
+                            label="Recipe Type" v-model="recipeData.category" @change="changeRecipeType">
+
                         </base-select>
                     </div>
                     <!-- Recipe Category End -->
@@ -55,16 +52,14 @@
                     <!-- Preparation Time Start -->
                     <div class="mb-3">
                         <base-input type="number" identity="prepTime" placeholder="0" label="Prep Time"
-                        v-model="recipeData.prepTime"
-                        ></base-input>
+                            v-model="recipeData.prepTime"></base-input>
                     </div>
                     <!-- Preparation Time End -->
 
                     <!-- Cook Time Start -->
                     <div class="mb-3">
                         <base-input type="number" identity="cookTime" placeholder="0" label="Cook Time"
-                        v-model="recipeData.cookTime"
-                        ></base-input>
+                            v-model="recipeData.cookTime"></base-input>
 
                     </div>
                     <!-- Cook Time End -->
@@ -72,9 +67,7 @@
                     <!-- Total Time Start -->
                     <div class="mb-3">
                         <base-input type="number" identity="totalTime" placeholder="0" label="Total Time"
-                        v-model="recipeData.totalTime"
-                        @totalTimeFocus="totalTime" readonly="1"
-                        ></base-input>
+                            v-model="recipeData.totalTime" @totalTimeFocus="totalTime" readonly="1"></base-input>
                     </div>
                     <!-- Total Time End -->
                 </div>
@@ -91,28 +84,23 @@
                     recipe (i.e. Cake, Frosting, Dressing).
                 </p>
                 <div>
-                    <div class="mb-3 row" v-for="count in ingredientCount" :key="count" >
+                    <div class="mb-3 row" v-for="count in ingredientCount" :key="count">
                         <!-- Ingredient Input Start -->
                         <div class="col-lg-11 col-11">
-                            <base-input type="text" identity="ingredient" placeholder="Ex: 1 cup sugar"
-                                label="Ingredient"
-                                v-model="recipeData.ingredients[count-1]"
-                                ></base-input>
+                            <base-input type="text" identity="ingredient" placeholder="Ex: 1 cup sugar" label="Ingredient"
+                                v-model="recipeData.ingredients[count - 1]"></base-input>
 
                         </div>
                         <!-- Ingredient Input End -->
                         <div class="col-lg-1 col-1 col-form-label align-self-end delete-ingredient" style="color: #cb3a31"
-                        v-if="ingredientCount > 1" @click="deleteIngredient(count-1)"
-                        >
+                            v-if="ingredientCount > 1" @click="deleteIngredient(count - 1)">
                             <i class="fa-regular fa-trash-can px-1"></i><span class="d-none d-md-inline">Delete</span>
                         </div>
                     </div>
                 </div>
                 <!-- Add More Button Start -->
                 <div class="mb-3">
-                    <base-button class="new-ingredient-btn px-3 py-2" type="button"
-                    @clickButton="addIngredient"
-                    >
+                    <base-button class="new-ingredient-btn px-3 py-2" type="button" @clickButton="addIngredient">
                         Add More
                     </base-button>
                 </div>
@@ -129,29 +117,24 @@
                     the different parts of the recipe
                 </p>
                 <div>
-                    <div class="mb-3 row" v-for="count in directionCount" :key="count" >
+                    <div class="mb-3 row" v-for="count in directionCount" :key="count">
                         <!-- Direction Input Start -->
                         <div class="col-lg-11 col-11">
                             <div class="mb-3">
-                                <base-input type="text" identity="direction" placeholder="Ex: 1 cup sugar"
-                                    label="Direction"
-                                    v-model="recipeData.directions[count-1]"
-                                    ></base-input>
+                                <base-input type="text" identity="direction" placeholder="Ex: 1 cup sugar" label="Direction"
+                                    v-model="recipeData.directions[count - 1]"></base-input>
                             </div>
 
                         </div>
                         <!-- Direction Input End -->
                         <div class="col-lg-1 col-1 col-form-label align-self-end delete-ingredient" style="color: #cb3a31"
-                        v-if="directionCount > 1" @click="deleteDirection(count-1)"
-                        >
+                            v-if="directionCount > 1" @click="deleteDirection(count - 1)">
                             <i class="fa-regular fa-trash-can px-1"></i><span class="d-none d-md-inline">Delete</span>
                         </div>
                     </div>
                 </div>
                 <!-- Add More Button Start -->
-                <base-button class="new-ingredient-btn px-3 py-2" type="button"
-                @clickButton="addDirection"
-                >
+                <base-button class="new-ingredient-btn px-3 py-2" type="button" @clickButton="addDirection">
                     Add More
                 </base-button>
                 <!-- Add More Button End -->
@@ -167,9 +150,7 @@
                 <!-- Cancel Button End -->
 
                 <!-- Submit Button Start -->
-                <base-button class="submit-recipe-btn px-3 py-2 ms-1" type="button"
-                @clickButton="addNewRecipe"
-                >
+                <base-button class="submit-recipe-btn px-3 py-2 ms-1" type="button" @clickButton="addNewRecipe">
                     Submit
                 </base-button>
                 <!-- Submit Button End -->
@@ -185,25 +166,48 @@ import BaseInput from '../ui/BaseInput.vue';
 import BaseTextArea from '../ui/BaseTextArea.vue';
 import BaseSelect from '../ui/BaseSelect.vue';
 import BaseButton from '../ui/BaseButton.vue';
-import {reactive} from 'vue';
-import {ref} from 'vue';
-import {useStore} from 'vuex';
-import {useRouter} from 'vue-router';
+import { onMounted, reactive } from 'vue';
+import { ref } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+import { defineProps } from 'vue';
 
-const store = useStore();
-const router = useRouter();
+const route = useRouter();
+
 
 const recipeData = reactive({
-    imageLink : "",
-    name : "",
-    description : "",
-    category : "",
-    prepTime : 0,
-    cookTime : 0,
-    totalTime : 0,
-    ingredients : [],
-    directions : []
+    imageLink: "https://t3.ftcdn.net/jpg/03/74/73/78/360_F_374737839_VsxlmnN7soqOOOFFzy5kfE9H6PFMCkPX.jpg",
+    name: "",
+    description: "",
+    category: "",
+    prepTime: 0,
+    cookTime: 0,
+    totalTime: 0,
+    ingredients: [],
+    directions: []
 });
+
+
+const store = useStore();
+const props = defineProps({
+    isEdit: { type: Boolean, required: true }
+})
+
+
+
+onMounted(() => {
+    console.log(props.isEdit)
+    if (props.isEdit) {
+        Object.assign(recipeData, store.state.recipe.recipeDetail);
+        ingredientCount.value = recipeData.ingredients.length;
+        directionCount.value = recipeData.directions.length;
+        console.log(recipeData.name)
+    }
+
+
+})
+
+
 
 
 const ingredientCount = ref(1);
@@ -244,8 +248,19 @@ const checkImage = (event) => {
 }
 
 const addNewRecipe = async () => {
-    await store.dispatch('recipe/addNewRecipe', recipeData);
-    router.push('/user/user-recipe');
+    console.log(route.currentRoute.value.params.id)
+    if (props.isEdit) {
+        await store.dispatch('recipe/updateRecipe', {
+            id: route.currentRoute.value.params.id,
+            newRecipe: recipeData
+        });
+
+    } else {
+        await store.dispatch('recipe/addNewRecipe', recipeData);
+    }
+    route.push('/user/user-recipe');
+    return;
+
 }
 const changeRecipeType = (event) => {
     console.log(event.target.value);

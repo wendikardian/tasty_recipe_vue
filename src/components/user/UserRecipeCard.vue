@@ -18,7 +18,9 @@
             <button class="btn delete-btn px-3 py-2 rounded-pill"
             @click="$emit('btnRemove')"
             > {{ buttonName[0] }}  </button>
-            <button class="btn edit-btn px-3 py-2 rounded-pill"> {{ buttonName[1] }} </button>
+            <button class="btn edit-btn px-3 py-2 rounded-pill"
+            @click="$router.push(`/recipe/edit/${recipe.id}`)"
+            > {{ buttonName[1] }} </button>
           </div>
         </div>
       </div>
