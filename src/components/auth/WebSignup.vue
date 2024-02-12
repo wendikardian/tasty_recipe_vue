@@ -28,9 +28,7 @@
                 </div>
                 <div class="my-4">
                     <base-input type="password" identity="password" label="Password" placeholder="Your password"
-                        v-model="signupData.password" @keyInput="passwordCheck"
-                        
-                        />
+                        v-model="signupData.password" @keyInput="passwordCheck" />
                     <p class="text-danger mt-1 fw-medium" style="font-size: 11px"
                         :style="{ display: passwordStatusDisplay }">
                         The Password field must be at least 8 characters in length.
@@ -81,9 +79,9 @@
 <script setup >
 import BaseInput from '../ui/BaseInput.vue';
 import BaseButton from '../ui/BaseButton.vue';
+import { reactive, ref } from "vue";
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-import { reactive, ref } from "vue";
 
 const store = useStore();
 const router = useRouter();
@@ -146,12 +144,12 @@ const confirmationPasswordCheck = () => {
 }
 
 const register = async () => {
-    if(signupData.password !== signupData.confirmationPassword || signupData.password.length < 8) {
+    if (signupData.password !== signupData.confirmationPassword || signupData.password.length < 8) {
         signupData.confirmationPassword = "";
         signupData.password = "";
         confirmPassowrdDoesNotMatch.value = "none";
         confirmPassowrdDoesMatch.value = "none";
-    }else { 
+    } else {
         await store.dispatch('auth/getRegisterData', signupData);
         router.push('/');
     }

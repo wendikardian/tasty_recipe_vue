@@ -1,14 +1,12 @@
 <template>
     <div :class="{ 'input-wrapper': type == 'file' }">
-
-
         <label :for="identity" class="fw-semibold">
             {{ label }} <span style="color: #cb3a31">*</span>
             <slot></slot>
         </label>
     </div>
-    <input :class="[{ 'd-none': isImage }, 'form-control']" :ckass="[{ 'file-input': type == 'file' }, 'form-control']"
-        :type="type" :id="identity" :placeholder="placeholder" :value="modelValue" :readonly="readonly === '1'"
+    <input :class="[{ 'd-none': isImage, 'file-input': type == 'file' }, 'form-control']" :type="type" :id="identity"
+        :placeholder="placeholder" :value="modelValue" :readonly="readonly === '1'"
         @keyup="$emit('keyInput', $event.target.value)" @change="$emit('change', $event)"
         @input="$emit('update:modelValue', $event.target.value)" @focus="$emit('totalTimeFocus', $event.target.value)" />
 </template>
