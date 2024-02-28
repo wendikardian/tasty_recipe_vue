@@ -53,7 +53,7 @@ defineProps({
 
 .file-input {
     cursor: pointer;
-    height: 100%;
+    /* height: 100%; */
     position: absolute;
     top: 0;
     right: 0;
