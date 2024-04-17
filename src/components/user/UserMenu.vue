@@ -10,6 +10,7 @@
                     </div>
                 </div>
             </li>
+
             <li class="list-group-item user-menu" @click="menuClicked('personal-info')">
                 <i class="fa-solid fa-user pe-2"></i>Personal Info
             </li>
